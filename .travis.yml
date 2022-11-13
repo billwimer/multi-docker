@@ -14,4 +14,11 @@ after_success:
   - docker build -t bwimerhcl/multi-nginx ./nginx
   - docker build -t bwimerhcl/multi-server ./server
   - docker build -t bwimerhcl/multi-worker ./worker
+  # Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Push images to dockerhub
+  - docker push bwimerhcl/multi-client
+  - docker push bwimerhcl/multi-nginx
+  - docker push bwimerhcl/multi-server
+  - docker push bwimerhcl/multi-worker
 
